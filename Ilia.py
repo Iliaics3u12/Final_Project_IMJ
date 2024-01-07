@@ -102,15 +102,34 @@ def factorial_func():
         entry.insert(tk.END, "Error")
 
 def quadratic_formula():
+    if a_label.winfo_viewable():
+        a_label.grid_remove()
+        a_entry.grid_remove()
+        b_label.grid_remove()
+        b_entry.grid_remove()
+        c_label.grid_remove()
+        c_entry.grid_remove()
+    else:
+        a_label.grid(row=7, column=0)
+        a_entry.grid(row=7, column=1)
+        b_label.grid(row=8, column=0)
+        b_entry.grid(row=8, column=1)
+        c_label.grid(row=9, column=0)
+        c_entry.grid(row=9, column=1)
+
+def calculate_roots():
     try:
-        a, b, c = map(float, entry.get().split())
-        clear_entry()
+        a = float(a_entry.get())
+        b = float(b_entry.get())
+        c = float(c_entry.get())
         root1 = (-b + csqrt(b**2 - 4*a*c)) / (2*a)
         root2 = (-b - csqrt(b**2 - 4*a*c)) / (2*a)
+        entry.configure(width=50)  # Increase width for larger roots
+        # Display roots as real numbers if they are real, otherwise display as complex numbers
         entry.insert(tk.END, f"Roots: {root1}, {root2}")
     except ValueError:
         clear_entry()
-        entry.insert(tk.END, "Error")
+        entry.insert(tk.END, "Enter values for a, b, c")
 
 root = tk.Tk()
 root.title("Scientific Calculator (Ilia's Part)")
@@ -149,7 +168,7 @@ for i, row in enumerate(buttons, start=1):
         elif button_label == 'quadratic':
             action = quadratic_formula
         elif button_label == '=':
-            action = calculate
+            action = calculate_roots
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 
@@ -159,7 +178,15 @@ for i, row in enumerate(buttons, start=1):
 clear_button = tk.Button(root, text='Clear', **button_params, command=clear_entry)
 clear_button.grid(row=6, column=0, columnspan=4, sticky="nsew")
 
-for i in range(8):
+# Quadratic formula inputs
+a_label = tk.Label(root, text="a:")
+a_entry = tk.Entry(root)
+b_label = tk.Label(root, text="b:")
+b_entry = tk.Entry(root)
+c_label = tk.Label(root, text="c:")
+c_entry = tk.Entry(root)
+
+for i in range(10):
     root.grid_rowconfigure(i, weight=1)
 for j in range(4):
     root.grid_columnconfigure(j, weight=1)
