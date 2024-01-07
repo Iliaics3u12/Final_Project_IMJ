@@ -2,6 +2,7 @@ import tkinter as tk
 from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial # Functions that I wrote there.
 from cmath import sqrt as csqrt
 
+
 def insert_text(text):
     entry.insert(tk.END, text)
 
@@ -112,7 +113,7 @@ def quadratic_formula():
         entry.insert(tk.END, "Error")
 
 root = tk.Tk()
-root.title("Scientific Calculator")
+root.title("Scientific Calculator (Ilia's Part)")
 
 entry = tk.Entry(root, font=('arial', 20, 'bold'), borderwidth=3, relief="ridge", justify="right", bg="#2c3e50", fg="#ecf0f1")
 entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
