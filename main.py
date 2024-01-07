@@ -129,8 +129,7 @@ def calculate_quadratic_roots():
         c = float(c_entry.get())
         root1 = (-b + csqrt(b**2 - 4*a*c)) / (2*a)
         root2 = (-b - csqrt(b**2 - 4*a*c)) / (2*a)
-        entry.configure(width=50)  # Increase width for larger roots
-        # Display roots as real numbers if they are real, otherwise display as complex numbers
+        entry.configure(width=50)
         entry.delete(0, tk.END)
         entry.insert(tk.END, f"{root1.real if root1.imag == 0 else root1}, {root2.real if root2.imag == 0 else root2}")
     except ValueError:
@@ -172,8 +171,7 @@ def calculate_cubic_roots():
         root2 = ((-b/2 + root1)**(1/3) if -b/2 + root1.real >= 0 else -((-b/2 + root1)**(1/3)))
         root3 = ((-b/2 - root1)**(1/3) if -b/2 - root1.real >= 0 else -((-b/2 - root1)**(1/3)))
         roots = [root2 + root3 + offset, -((root2 + root3)/2) + offset + csqrt(3)*(root2 - root3)*1j/2, -((root2 + root3)/2) + offset - csqrt(3)*(root2 - root3)*1j/2]
-        entry.configure(width=50)  # Increase width for larger roots
-        # Display roots as real numbers if they are real, otherwise display as complex numbers
+        entry.configure(width=50)
         entry.delete(0, tk.END)
         entry.insert(tk.END, f"{roots[0].real if roots[0].imag == 0 else roots[0]}, {roots[1].real if roots[1].imag == 0 else roots[1]}, {roots[2].real if roots[2].imag == 0 else roots[2]}")
     except ValueError:
@@ -182,7 +180,7 @@ def calculate_cubic_roots():
 
 root = tk.Tk()
 root.title("Scientific Calculator")
-root.geometry("800x1200")  # Increase the size of the calculator
+root.geometry("800x1200")
 
 entry = tk.Entry(root, font=('arial', 30, 'bold'), borderwidth=3, relief="ridge", justify="right", bg="#2c3e50", fg="#ecf0f1")
 entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
