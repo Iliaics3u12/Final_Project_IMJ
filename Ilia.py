@@ -1,7 +1,6 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial # Functions that I wrote there.
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
 from cmath import sqrt as csqrt
-
 
 def insert_text(text):
     entry.insert(tk.END, text)
@@ -38,56 +37,57 @@ def square_root():
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
-def cosine():
+
+def cosine_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(cos(value)))
+        entry.insert(tk.END, str(cos(radians(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def sine():
+def tangent_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(sin(value)))
+        entry.insert(tk.END, str(tan(radians(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def tangent():
+def sine_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(tan(value)))
+        entry.insert(tk.END, str(sin(radians(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def inverse_cosine():
+def inverse_cosine_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(acos(value)))
+        entry.insert(tk.END, str(degrees(acos(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def inverse_sine():
+def inverse_sine_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(asin(value)))
+        entry.insert(tk.END, str(degrees(asin(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def inverse_tangent():
+def inverse_tangent_deg():
     try:
         value = float(entry.get())
         clear_entry()
-        entry.insert(tk.END, str(atan(value)))
+        entry.insert(tk.END, str(degrees(atan(value))))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
@@ -125,29 +125,31 @@ button_params = {
 }
 
 buttons = [
-
-    ('cos', 'sin', 'tan', 'factorial'),
-    ('acos', 'asin', 'atan', 'quadratic'),
+    ('cos', 'sin', 'tan'),
+    ('acos', 'asin', 'atan'),
+    ('factorial', 'quadratic', '=')
 ]
 
 for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
         if button_label == 'cos':
-            action = cosine
+            action = cosine_deg
         elif button_label == 'sin':
-            action = sine
+            action = sine_deg
         elif button_label == 'tan':
-            action = tangent
+            action = tangent_deg
         elif button_label == 'acos':
-            action = inverse_cosine
+            action = inverse_cosine_deg
         elif button_label == 'asin':
-            action = inverse_sine
+            action = inverse_sine_deg
         elif button_label == 'atan':
-            action = inverse_tangent
+            action = inverse_tangent_deg
         elif button_label == 'factorial':
             action = factorial_func
         elif button_label == 'quadratic':
             action = quadratic_formula
+        elif button_label == '=':
+            action = calculate
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 
@@ -157,7 +159,7 @@ for i, row in enumerate(buttons, start=1):
 clear_button = tk.Button(root, text='Clear', **button_params, command=clear_entry)
 clear_button.grid(row=6, column=0, columnspan=4, sticky="nsew")
 
-for i in range(7):
+for i in range(8):
     root.grid_rowconfigure(i, weight=1)
 for j in range(4):
     root.grid_columnconfigure(j, weight=1)
