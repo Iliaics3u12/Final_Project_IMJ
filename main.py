@@ -120,6 +120,7 @@ def factorial_func():
         entry.insert(tk.END, "Error")
 
 def cube():
+    """Calculate the cube of the input value and display the result."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -129,6 +130,7 @@ def cube():
         entry.insert(tk.END, "Error")
 
 def cube_root():
+    """Calculate the cubic root of the input value and display the results."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -138,6 +140,7 @@ def cube_root():
         entry.insert(tk.END, "Error")
 
 def logarithm_base_10():
+    """Computes the base 10 logarithm of the input value and displays the result."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -147,6 +150,7 @@ def logarithm_base_10():
         entry.insert(tk.END, "Error")
 
 def euler_number():
+    """Inserts the value of Euler's number (e) into the calculator."""
     entry.insert(tk.END, str(exp(1)))
 
 def quadratic_formula():
