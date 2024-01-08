@@ -241,7 +241,7 @@ for i, row in enumerate(buttons, start=1):
         button.grid(row=i, column=j, sticky="nsew")
 
 clear_button = tk.Button(root, text='Clear', **button_params, command=clear_entry)
-clear_button.grid(row=6, column=0, columnspan=4, sticky="nsew")
+clear_button.grid(row=9, column=0, columnspan=4, sticky="nsew")
 
 # Quadratic formula inputs
 a_label = tk.Label(root, text="a:", font=('arial', 20, 'bold'))
