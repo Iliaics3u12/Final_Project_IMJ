@@ -196,21 +196,22 @@ buttons = [
     ('4', '5', '6', '*'),
     ('1', '2', '3', '-'),
     ('0', '.', 'pi', '+'),
-    ('x^2', 'x^y', 'sqrt','='),
-    ('factorial', 'quadratic','cubic'),
-    ('cos', 'sin', 'tan', ),
-    ('acos', 'asin', 'atan', )
+    ('x²', 'x^y', '√', '='),
+    ('factorial', 'quadratic', 'cubic', 'cos'),
+    ('sin', 'tan', 'acos', 'asin'),
+    ('atan', 'log10', 'Clear'),
 ]
+
 
 for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
         if button_label == 'pi':
             action = lambda pi=pi: insert_text(str(pi))
-        elif button_label == 'x^2':
+        elif button_label == 'x²':
             action = square
         elif button_label == 'x^y':
             action = power
-        elif button_label == 'sqrt':
+        elif button_label == '√':
             action = square_root
         elif button_label == '=':
             action = calculate
