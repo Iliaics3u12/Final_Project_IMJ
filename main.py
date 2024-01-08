@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, log10, exp, factorial, radians, degrees
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
 from cmath import sqrt as csqrt
 
 def insert_text(text):
@@ -39,24 +39,6 @@ def square_root():
         value = float(entry.get())
         clear_entry()
         entry.insert(tk.END, str(sqrt(value)))
-    except ValueError:
-        clear_entry()
-        entry.insert(tk.END, "Error")
-
-def cube():
-    try:
-        value = float(entry.get())
-        clear_entry()
-        entry.insert(tk.END, str(value ** 3))
-    except ValueError:
-        clear_entry()
-        entry.insert(tk.END, "Error")
-
-def cube_root():
-    try:
-        value = float(entry.get())
-        clear_entry()
-        entry.insert(tk.END, str(value ** (1/3)))
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
@@ -115,21 +97,6 @@ def inverse_tangent_deg():
         clear_entry()
         entry.insert(tk.END, "Error")
 
-def logarithm_base_x():
-    entry.insert(tk.END, 'logx(')
-
-def logarithm_base_10():
-    try:
-        value = float(entry.get())
-        clear_entry()
-        entry.insert(tk.END, str(log10(value)))
-    except ValueError:
-        clear_entry()
-        entry.insert(tk.END, "Error")
-
-def euler_number():
-    entry.insert(tk.END, str(exp(1)))
-
 def factorial_func():
     try:
         value = int(entry.get())
@@ -162,7 +129,8 @@ def calculate_quadratic_roots():
         c = float(c_entry.get())
         root1 = (-b + csqrt(b**2 - 4*a*c)) / (2*a)
         root2 = (-b - csqrt(b**2 - 4*a*c)) / (2*a)
-        entry.configure(width=50)
+        entry.configure(width=50)  # Increase width for larger roots
+        # Display roots as real numbers if they are real, otherwise display as complex numbers
         entry.delete(0, tk.END)
         entry.insert(tk.END, f"{root1.real if root1.imag == 0 else root1}, {root2.real if root2.imag == 0 else root2}")
     except ValueError:
@@ -201,24 +169,20 @@ def calculate_cubic_roots():
         offset = -p/3
         # Calculate the roots
         root1 = csqrt(b**2/4 + a**3/27)
-        root2 = ((-b/2 + root1)**(1/3) if -b/2 + root1.real >= 0 else -((-b/2 + root1)**(1/3)))
-        root3 = ((-b/2 - root1)**(1/3) if -b/2 - root1.real >= 0 else -((-b/2 - root1)**(1/3)))
+        root2 = ((-b/2 + root1)**(1/3) if -b/2 + root1 >= 0 else -((-b/2 + root1)**(1/3)))
+        root3 = ((-b/2 - root1)**(1/3) if -b/2 - root1 >= 0 else -((-b/2 - root1)**(1/3)))
         roots = [root2 + root3 + offset, -((root2 + root3)/2) + offset + csqrt(3)*(root2 - root3)*1j/2, -((root2 + root3)/2) + offset - csqrt(3)*(root2 - root3)*1j/2]
-        entry.configure(width=50)
+        entry.configure(width=50)  # Increase width for larger roots
+        # Display roots as real numbers if they are real, otherwise display as complex numbers
         entry.delete(0, tk.END)
         entry.insert(tk.END, f"{roots[0].real if roots[0].imag == 0 else roots[0]}, {roots[1].real if roots[1].imag == 0 else roots[1]}, {roots[2].real if roots[2].imag == 0 else roots[2]}")
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Enter values for p, q, r, s")
 
-def delete_previous():
-    current_text = entry.get()
-    if current_text:
-        entry.delete(len(current_text) - 1, tk.END)
-
 root = tk.Tk()
 root.title("Scientific Calculator")
-root.geometry("800x1200")
+root.geometry("800x1200")  # Increase the size of the calculator
 
 entry = tk.Entry(root, font=('arial', 30, 'bold'), borderwidth=3, relief="ridge", justify="right", bg="#2c3e50", fg="#ecf0f1")
 entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
@@ -234,22 +198,21 @@ buttons = [
     ('4', '5', '6', '*'),
     ('1', '2', '3', '-'),
     ('0', '.', 'pi', '+'),
-    ('x²', 'x^y', '√', '='),
-    ('factorial', 'quadratic', 'cubic', 'cos'),
-    ('sin', 'tan', 'acos', 'asin', 'atan'),
-    ('log10', 'e', 'x³', '³√'),
+    ('x^2', 'x^y', 'sqrt','='),
+    ('factorial', 'quadratic','cubic'),
+    ('cos', 'sin', 'tan', ),
+    ('acos', 'asin', 'atan', )
 ]
-
 
 for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
         if button_label == 'pi':
             action = lambda pi=pi: insert_text(str(pi))
-        elif button_label == 'x²':
+        elif button_label == 'x^2':
             action = square
         elif button_label == 'x^y':
             action = power
-        elif button_label == '√':
+        elif button_label == 'sqrt':
             action = square_root
         elif button_label == '=':
             action = calculate
@@ -271,20 +234,6 @@ for i, row in enumerate(buttons, start=1):
             action = quadratic_formula
         elif button_label == 'cubic':
             action = cubic_formula
-        if button_label == 'logx':
-            action = logarithm_base_x
-        elif button_label == 'log10':
-            action = logarithm_base_10
-        elif button_label == 'Del':
-            action = delete_previous
-        elif button_label == '=':
-            action = calculate
-        elif button_label == 'e':
-            action = euler_number
-        elif button_label == 'x³':
-            action = cube
-        elif button_label == '³√':
-            action = cube_root
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 
@@ -292,7 +241,7 @@ for i, row in enumerate(buttons, start=1):
         button.grid(row=i, column=j, sticky="nsew")
 
 clear_button = tk.Button(root, text='Clear', **button_params, command=clear_entry)
-clear_button.grid(row=9, column=0, columnspan=4, sticky="nsew")
+clear_button.grid(row=6, column=0, columnspan=4, sticky="nsew")
 
 # Quadratic formula inputs
 a_label = tk.Label(root, text="a:", font=('arial', 20, 'bold'))
