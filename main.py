@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, log10, exp, factorial, radians, degrees
 from cmath import sqrt as csqrt
 
 def insert_text(text):
@@ -211,6 +211,11 @@ def calculate_cubic_roots():
         clear_entry()
         entry.insert(tk.END, "Enter values for p, q, r, s")
 
+def delete_previous():
+    current_text = entry.get()
+    if current_text:
+        entry.delete(len(current_text) - 1, tk.END)
+
 root = tk.Tk()
 root.title("Scientific Calculator")
 root.geometry("800x1200")
@@ -231,8 +236,8 @@ buttons = [
     ('0', '.', 'pi', '+'),
     ('x²', 'x^y', '√', '='),
     ('factorial', 'quadratic', 'cubic', 'cos'),
-    ('sin', 'tan', 'acos', 'asin'),
-    ('atan', 'log10', 'Clear'),
+    ('sin', 'tan', 'acos', 'asin', 'atan'),
+    ('log10', 'e', 'x³', '³√'),
 ]
 
 
@@ -266,6 +271,20 @@ for i, row in enumerate(buttons, start=1):
             action = quadratic_formula
         elif button_label == 'cubic':
             action = cubic_formula
+        if button_label == 'logx':
+            action = logarithm_base_x
+        elif button_label == 'log10':
+            action = logarithm_base_10
+        elif button_label == 'Del':
+            action = delete_previous
+        elif button_label == '=':
+            action = calculate
+        elif button_label == 'e':
+            action = euler_number
+        elif button_label == 'x³':
+            action = cube
+        elif button_label == '³√':
+            action = cube_root
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 

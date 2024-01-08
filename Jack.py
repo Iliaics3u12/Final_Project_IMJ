@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import log10, exp
+from math import log10, sqrt, exp
 
 def clear_entry():
     entry.delete(0, tk.END)
@@ -40,6 +40,20 @@ def logarithm_base_10():
 def euler_number():
     entry.insert(tk.END, str(exp(1)))
 
+def calculate():
+    try:
+        result = eval(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(result))
+    except Exception as e:
+        clear_entry()
+        entry.insert(tk.END, f"Error")
+
+def delete_previous():
+    current_text = entry.get()
+    if current_text:
+        entry.delete(len(current_text) - 1, tk.END)
+
 root = tk.Tk()
 root.title("Scientific Calculator")
 root.geometry("1080x720")
@@ -61,19 +75,16 @@ buttons = [
     ('x²','log10', '√', 'Del'),
 ]
 
-def delete_previous():
-    current_text = entry.get()
-    if current_text:
-        entry.delete(len(current_text) - 1, tk.END)
-
 for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
         if button_label == 'logx':
             action = logarithm_base_x
         elif button_label == 'log10':
-            action = lambda button_label='log10': insert_text(button_label)
+            action = logarithm_base_10
         elif button_label == 'Del':
             action = delete_previous
+        elif button_label == '=':
+            action = calculate
         elif button_label == 'e':
             action = euler_number
         elif button_label == 'x³':
