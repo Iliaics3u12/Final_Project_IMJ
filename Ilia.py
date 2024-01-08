@@ -124,8 +124,8 @@ def calculate_roots():
         c = float(c_entry.get())
         root1 = (-b + csqrt(b**2 - 4*a*c)) / (2*a)
         root2 = (-b - csqrt(b**2 - 4*a*c)) / (2*a)
-        entry.configure(width=50)  # Increase width for larger roots
-        # Display roots as real numbers if they are real, otherwise display as complex numbers
+        entry.configure(width=50)
+
         entry.insert(tk.END, f"Roots: {root1}, {root2}")
     except ValueError:
         clear_entry()
