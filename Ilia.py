@@ -1,10 +1,10 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees, log10, log, exp
 from cmath import sqrt as csqrt
 
 def insert_text(text):
     """
-    Inserts the given text at the end of the entry field.
+    Inserts the given text into the entry field.
 
     :param text: The text to be inserted.
     :return: None
@@ -13,7 +13,7 @@ def insert_text(text):
 
 def calculate():
     """
-    Evaluates the mathematical expression in the entry field.
+    Evaluates the expression in the entry field.
 
     :return: None
     """
@@ -99,7 +99,7 @@ def tangent_deg():
 
 def sine_deg():
     """
-    Calculates the sine of the value in the entry field .
+    Calculates the sine of the value in the entry field.
 
     :return: None
     """
@@ -181,14 +181,14 @@ def quadratic_formula():
         c_label.grid_remove()
         c_entry.grid_remove()
     else:
-        a_label.grid(row=7, column=0)
-        a_entry.grid(row=7, column=1)
-        b_label.grid(row=8, column=0)
-        b_entry.grid(row=8, column=1)
-        c_label.grid(row=9, column=0)
-        c_entry.grid(row=9, column=1)
+        a_label.grid(row=10, column=0)
+        a_entry.grid(row=10, column=1)
+        b_label.grid(row=11, column=0)
+        b_entry.grid(row=11, column=1)
+        c_label.grid(row=12, column=0)
+        c_entry.grid(row=12, column=1)
 
-def calculate_roots():
+def calculate_quadratic_roots():
     """
     Calculates the roots of the quadratic equation using the quadratic formula.
 
@@ -200,15 +200,16 @@ def calculate_roots():
         c = float(c_entry.get())
         root1 = (-b + csqrt(b**2 - 4*a*c)) / (2*a)
         root2 = (-b - csqrt(b**2 - 4*a*c)) / (2*a)
-        entry.configure(width=50)
-
-        entry.insert(tk.END, f"Roots: {root1}, {root2}")
+        entry.configure(width=50)  # Increase width for larger roots
+        # Display roots as real numbers if they are real, otherwise display as complex numbers
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, f"{root1.real if root1.imag == 0 else root1}, {root2.real if root2.imag == 0 else root2}")
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Enter values for a, b, c")
 
 root = tk.Tk()
-root.title("Scientific Calculator (Ilia's Part)")
+root.title("Scientific Calculator")
 
 entry = tk.Entry(root, font=('arial', 20, 'bold'), borderwidth=3, relief="ridge", justify="right", bg="#2c3e50", fg="#ecf0f1")
 entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
@@ -220,14 +221,29 @@ button_params = {
 }
 
 buttons = [
-    ('cos', 'sin', 'tan'),
-    ('acos', 'asin', 'atan'),
-    ('factorial', 'quadratic', '=')
+    ('7', '8', '9', '/'),
+    ('4', '5', '6', '*'),
+    ('1', '2', '3', '-'),
+    ('0', '.', '=', '+'),
+    ('x²', '√', 'x!', 'x^y'),
+    ('cos', 'sin', 'tan', 'π'),
+    ('acos', 'asin', 'atan', 'e'),
+    ('log10', 'ln', 'exp', 'quadratic')
 ]
 
 for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
-        if button_label == 'cos':
+        if button_label == 'π':
+            action = lambda pi=pi: insert_text(str(pi))
+        elif button_label == 'x²':
+            action = square
+        elif button_label == 'x^y':
+            action = power
+        elif button_label == '√':
+            action = square_root
+        elif button_label == '=':
+            action = calculate
+        elif button_label == 'cos':
             action = cosine_deg
         elif button_label == 'sin':
             action = sine_deg
@@ -239,12 +255,18 @@ for i, row in enumerate(buttons, start=1):
             action = inverse_sine_deg
         elif button_label == 'atan':
             action = inverse_tangent_deg
-        elif button_label == 'factorial':
+        elif button_label == 'x!':
             action = factorial_func
-        elif button == 'quadratic':
+        elif button_label == 'quadratic':
             action = quadratic_formula
-        elif button_label == '=':
-            action = calculate_roots
+        elif button_label == 'e':
+            action = lambda e=exp(1): insert_text(str(e))
+        elif button_label == 'ln':
+            action = lambda: entry.insert(tk.END, 'log(')
+        elif button_label == 'log10':
+            action = lambda: entry.insert(tk.END, 'log10(')
+        elif button_label == 'exp':
+            action = lambda: entry.insert(tk.END, 'exp(')
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 
@@ -252,7 +274,7 @@ for i, row in enumerate(buttons, start=1):
         button.grid(row=i, column=j, sticky="nsew")
 
 clear_button = tk.Button(root, text='Clear', **button_params, command=clear_entry)
-clear_button.grid(row=6, column=0, columnspan=4, sticky="nsew")
+clear_button.grid(row=9, column=0, columnspan=4, sticky="nsew")
 
 # Quadratic formula inputs
 a_label = tk.Label(root, text="a:")
@@ -268,4 +290,3 @@ for j in range(4):
     root.grid_columnconfigure(j, weight=1)
 
 root.mainloop()
-
