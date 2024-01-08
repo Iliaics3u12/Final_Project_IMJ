@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees, log10, log,exp
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees, log10, log, exp
 from cmath import sqrt as csqrt
 
 def insert_text(text):
@@ -187,6 +187,26 @@ def cubic_formula():
         s_label.grid(row=13, column=2)
         s_entry.grid(row=13, column=3)
 
+def cubic_formula():
+    if p_label.winfo_viewable():
+        p_label.grid_remove()
+        p_entry.grid_remove()
+        q_label.grid_remove()
+        q_entry.grid_remove()
+        r_label.grid_remove()
+        r_entry.grid_remove()
+        s_label.grid_remove()
+        s_entry.grid_remove()
+    else:
+        p_label.grid(row=10, column=2)
+        p_entry.grid(row=10, column=3)
+        q_label.grid(row=11, column=2)
+        q_entry.grid(row=11, column=3)
+        r_label.grid(row=12, column=2)
+        r_entry.grid(row=12, column=3)
+        s_label.grid(row=13, column=2)
+        s_entry.grid(row=13, column=3)
+
 def calculate_cubic_roots():
     try:
         p = float(p_entry.get())
@@ -199,16 +219,15 @@ def calculate_cubic_roots():
         offset = -p/3
         # Calculate the roots
         root1 = csqrt(b**2/4 + a**3/27)
-        root2 = ((-b/2 + root1)**(1/3) if -b/2 + root1 >= 0 else -((-b/2 + root1)**(1/3)))
-        root3 = ((-b/2 - root1)**(1/3) if -b/2 - root1 >= 0 else -((-b/2 - root1)**(1/3)))
+        root2 = ((-b/2 + root1)**(1/3) if -b/2 + root1.real >= 0 else -((-b/2 + root1)**(1/3)))
+        root3 = ((-b/2 - root1)**(1/3) if -b/2 - root1.real >= 0 else -((-b/2 - root1)**(1/3)))
         roots = [root2 + root3 + offset, -((root2 + root3)/2) + offset + csqrt(3)*(root2 - root3)*1j/2, -((root2 + root3)/2) + offset - csqrt(3)*(root2 - root3)*1j/2]
-        entry.configure(width=50)  # Increase width for larger roots
-        # Display roots as real numbers if they are real, otherwise display as complex numbers
+        entry.configure(width=50)
         entry.delete(0, tk.END)
         entry.insert(tk.END, f"{roots[0].real if roots[0].imag == 0 else roots[0]}, {roots[1].real if roots[1].imag == 0 else roots[1]}, {roots[2].real if roots[2].imag == 0 else roots[2]}")
     except ValueError:
         clear_entry()
-        entry.insert(tk.END, "Enter values for p, q, r, s")
+        entry.insert(tk.END, "Enter values for a, b, c, d")
 
 root = tk.Tk()
 root.title("Scientific Calculator")
@@ -267,8 +286,6 @@ for i, row in enumerate(buttons, start=1):
             action = cubic_formula
         elif button_label == 'log10':
             action = logarithm_base_10
-        elif button_label == '=':
-            action = calculate
         elif button_label == 'e':
             action = euler_number
         elif button_label == 'x³':
