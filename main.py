@@ -224,26 +224,15 @@ button_params = {
 }
 
 buttons = [
-<<<<<<< HEAD
-    ('7', '8', '9', '/','factorial'),
-    ('4', '5', '6', '*', 'quadratic'),
-    ('1', '2', '3', '-', 'cubic'),
-    ('0', '.', 'pi', '+'),
-    ('x²','x³', 'x^y', '='),
-    ('√', '³√', 'log10','e'),
-    ('cos', 'sin', 'tan', ),
-    ('acos', 'asin', 'atan', )
-=======
     ('7', '8', '9', '/',),
     ('4', '5', '6', '*', ),
     ('1', '2', '3', '-', ),
-    ('0', '.', 'pi', '+', ),
-    ('x^2', 'x^y', 'sqrt','='),
-    ('factorial', 'quadratic','cubic', 'x³'),
-    ('cos', 'sin', 'tan', '³√'),
-    ('acos', 'asin', 'atan','log10'),
+    ('0', '.', 'pi', '+'),
+    ('x²','x³', 'x^y', '='),
+    ('√', '³√', 'log10','factorial', ),
+    ('cos', 'sin', 'tan','quadratic'),
+    ('acos', 'asin', 'atan','cubic' ),
     ('e')
->>>>>>> 2c3b2d6 (The Application.)
 ]
 
 for i, row in enumerate(buttons, start=1):
@@ -319,4 +308,3 @@ for j in range(5):
     root.grid_columnconfigure(j, weight=1)
 
 root.mainloop()
-
