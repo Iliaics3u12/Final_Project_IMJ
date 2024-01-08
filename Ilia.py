@@ -71,7 +71,7 @@ def square_root():
 
 def cosine_deg():
     """
-    Calculates the cosine of the value in the entry field (in degrees).
+    Calculates the cosine of the value in the entry field.
 
     :return: None
     """
@@ -85,7 +85,7 @@ def cosine_deg():
 
 def tangent_deg():
     """
-    Calculates the tangent of the value in the entry field (in degrees).
+    Calculates the tangent of the value in the entry field.
 
     :return: None
     """
@@ -99,7 +99,7 @@ def tangent_deg():
 
 def sine_deg():
     """
-    Calculates the sine of the value in the entry field (in degrees).
+    Calculates the sine of the value in the entry field .
 
     :return: None
     """
@@ -113,7 +113,7 @@ def sine_deg():
 
 def inverse_cosine_deg():
     """
-    Calculates the inverse cosine of the value in the entry field (in degrees).
+    Calculates the inverse cosine of the value in the entry field.
 
     :return: None
     """
@@ -127,7 +127,7 @@ def inverse_cosine_deg():
 
 def inverse_sine_deg():
     """
-    Calculates the inverse sine of the value in the entry field (in degrees).
+    Calculates the inverse sine of the value in the entry field.
 
     :return: None
     """
@@ -141,7 +141,7 @@ def inverse_sine_deg():
 
 def inverse_tangent_deg():
     """
-    Calculates the inverse tangent of the value in the entry field (in degrees).
+    Calculates the inverse tangent of the value in the entry field.
 
     :return: None
     """
