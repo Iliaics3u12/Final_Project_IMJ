@@ -57,6 +57,11 @@ def square_root():
         entry.insert(tk.END, "Error")
 
 def cosine_deg():
+    """
+    Calculates the cosine of the value in the entry field (in degrees).
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -66,6 +71,11 @@ def cosine_deg():
         entry.insert(tk.END, "Error")
 
 def tangent_deg():
+    """
+    Calculates the tangent of the value in the entry field (in degrees).
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -75,6 +85,11 @@ def tangent_deg():
         entry.insert(tk.END, "Error")
 
 def sine_deg():
+    """
+    Calculates the sine of the value in the entry field (in degrees).
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -84,6 +99,11 @@ def sine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_cosine_deg():
+    """
+    Calculates the inverse cosine of the value in the entry field.
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -93,6 +113,11 @@ def inverse_cosine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_sine_deg():
+    """
+    Calculates the inverse sine of the value in the entry field.
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -102,6 +127,11 @@ def inverse_sine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_tangent_deg():
+    """
+    Calculates the inverse tangent of the value in the entry field.
+
+    :return: None
+    """
     try:
         value = float(entry.get())
         clear_entry()
@@ -111,6 +141,11 @@ def inverse_tangent_deg():
         entry.insert(tk.END, "Error")
 
 def factorial_func():
+    """
+    Calculates the factorial of the value in the entry field.
+
+    :return: None
+    """
     try:
         value = int(entry.get())
         clear_entry()
@@ -154,6 +189,11 @@ def euler_number():
     entry.insert(tk.END, str(exp(1)))
 
 def quadratic_formula():
+    """
+    Displays or hides the input fields for the quadratic formula.
+
+    :return: None
+    """
     if a_label.winfo_viewable():
         a_label.grid_remove()
         a_entry.grid_remove()
@@ -170,6 +210,11 @@ def quadratic_formula():
         c_entry.grid(row=12, column=1)
 
 def calculate_quadratic_roots():
+    """
+    Calculates the roots of the quadratic equation using the quadratic formula.
+
+    :return: None
+    """
     try:
         a = float(a_entry.get())
         b = float(b_entry.get())
