@@ -230,6 +230,11 @@ def calculate_quadratic_roots():
         entry.insert(tk.END, "Enter values for a, b, c")
 
 def cubic_formula():
+    """
+    Toggles the visibility of entry widgets for coefficients in a cubic equation.
+
+    If the entry widgets for coefficients (p, q, r, s) are currently visible, it hides them; otherwise, it shows them.
+    """
     if p_label.winfo_viewable():
         p_label.grid_remove()
         p_entry.grid_remove()
@@ -270,6 +275,11 @@ def cubic_formula():
         s_entry.grid(row=13, column=3)
 
 def calculate_cubic_roots():
+    """
+    Calculates the roots of a cubic equation and displays the result in the entry widget.
+
+    Reads coefficients (p, q, r, s) from entry widgets, applies the cubic formula, and displays the roots in the entry widget.
+    """
     try:
         p = float(p_entry.get())
         q = float(q_entry.get())
