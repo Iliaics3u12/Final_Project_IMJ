@@ -49,11 +49,6 @@ def calculate():
         clear_entry()
         entry.insert(tk.END, f"Error")
 
-def delete_previous():
-    current_text = entry.get()
-    if current_text:
-        entry.delete(len(current_text) - 1, tk.END)
-
 root = tk.Tk()
 root.title("Scientific Calculator")
 root.geometry("1080x720")
@@ -72,7 +67,7 @@ buttons = [
     ('4', '5', '6', '*'),
     ('1', '2', '3', '-'),
     ('0', '.', '+', '='),
-    ('x²','log10', '√', 'Del'),
+    ('x³','log10', '³√', 'e')
 ]
 
 for i, row in enumerate(buttons, start=1):

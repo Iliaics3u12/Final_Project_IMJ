@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
+from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees, log10, log,exp
 from cmath import sqrt as csqrt
 
 def insert_text(text):
@@ -106,6 +106,37 @@ def factorial_func():
         clear_entry()
         entry.insert(tk.END, "Error")
 
+def cube():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(value ** 3))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
+def cube_root():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(value ** (1/3)))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
+
+def logarithm_base_10():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(log10(value)))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
+def euler_number():
+    entry.insert(tk.END, str(exp(1)))
+
 def quadratic_formula():
     if a_label.winfo_viewable():
         a_label.grid_remove()
@@ -194,10 +225,10 @@ button_params = {
 }
 
 buttons = [
-    ('7', '8', '9', '/'),
-    ('4', '5', '6', '*'),
-    ('1', '2', '3', '-'),
-    ('0', '.', 'pi', '+'),
+    ('7', '8', '9', '/','x³'),
+    ('4', '5', '6', '*', '³√'),
+    ('1', '2', '3', '-', 'log10'),
+    ('0', '.', 'pi', '+', 'e'),
     ('x^2', 'x^y', 'sqrt','='),
     ('factorial', 'quadratic','cubic'),
     ('cos', 'sin', 'tan', ),
@@ -234,6 +265,16 @@ for i, row in enumerate(buttons, start=1):
             action = quadratic_formula
         elif button_label == 'cubic':
             action = cubic_formula
+        elif button_label == 'log10':
+            action = logarithm_base_10
+        elif button_label == '=':
+            action = calculate
+        elif button_label == 'e':
+            action = euler_number
+        elif button_label == 'x³':
+            action = cube
+        elif button_label == '³√':
+            action = cube_root
         else:
             action = lambda button_label=button_label: insert_text(button_label)
 
