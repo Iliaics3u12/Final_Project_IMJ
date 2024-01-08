@@ -3,9 +3,11 @@ from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, 
 from cmath import sqrt as csqrt
 
 def insert_text(text):
+    """Inserts the given text into the entry field."""
     entry.insert(tk.END, text)
 
 def calculate():
+    """Evaluates the expression in the entry field."""
     try:
         result = eval(entry.get())
         entry.delete(0, tk.END)
@@ -15,9 +17,11 @@ def calculate():
         entry.insert(tk.END, "Error")
 
 def clear_entry():
+    """Clears the entry field."""
     entry.delete(0, tk.END)
 
 def square():
+    """Squares the value in the entry field."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -27,9 +31,11 @@ def square():
         entry.insert(tk.END, "Error")
 
 def power():
+    """Inserts the power operator into the entry field."""
     entry.insert(tk.END, '**')
 
 def square_root():
+    """Calculates the square root of the value in the entry field."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -39,6 +45,7 @@ def square_root():
         entry.insert(tk.END, "Error")
 
 def cosine_deg():
+    """Calculates the cosine of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -48,6 +55,7 @@ def cosine_deg():
         entry.insert(tk.END, "Error")
 
 def tangent_deg():
+    """Calculates the tangent of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -57,6 +65,7 @@ def tangent_deg():
         entry.insert(tk.END, "Error")
 
 def sine_deg():
+    """Calculates the sine of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -66,6 +75,7 @@ def sine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_cosine_deg():
+    """Calculates the inverse cosine of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -75,6 +85,7 @@ def inverse_cosine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_sine_deg():
+    """Calculates the inverse sine of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -84,6 +95,7 @@ def inverse_sine_deg():
         entry.insert(tk.END, "Error")
 
 def inverse_tangent_deg():
+    """Calculates the inverse tangent of the value in the entry field (in degrees)."""
     try:
         value = float(entry.get())
         clear_entry()
@@ -93,6 +105,7 @@ def inverse_tangent_deg():
         entry.insert(tk.END, "Error")
 
 def factorial_func():
+    """Calculates the factorial of the value in the entry field."""
     try:
         value = int(entry.get())
         clear_entry()
@@ -102,6 +115,7 @@ def factorial_func():
         entry.insert(tk.END, "Error")
 
 def quadratic_formula():
+    """Displays the input fields for the quadratic formula."""
     if a_label.winfo_viewable():
         a_label.grid_remove()
         a_entry.grid_remove()
@@ -118,6 +132,7 @@ def quadratic_formula():
         c_entry.grid(row=9, column=1)
 
 def calculate_roots():
+    """Calculates the roots of the quadratic equation using the quadratic formula."""
     try:
         a = float(a_entry.get())
         b = float(b_entry.get())
