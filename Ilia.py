@@ -1,7 +1,7 @@
 import tkinter as tk
 from math import pi, sqrt, cos, sin, tan, acos, asin, atan, factorial, radians, degrees
 from cmath import sqrt as csqrt
-#
+
 def insert_text(text):
     entry.insert(tk.END, text)
 
