@@ -43,6 +43,24 @@ def square_root():
         clear_entry()
         entry.insert(tk.END, "Error")
 
+def cube():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(value ** 3))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
+def cube_root():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(value ** (1/3)))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
 def cosine_deg():
     try:
         value = float(entry.get())
@@ -96,6 +114,21 @@ def inverse_tangent_deg():
     except ValueError:
         clear_entry()
         entry.insert(tk.END, "Error")
+
+def logarithm_base_x():
+    entry.insert(tk.END, 'logx(')
+
+def logarithm_base_10():
+    try:
+        value = float(entry.get())
+        clear_entry()
+        entry.insert(tk.END, str(log10(value)))
+    except ValueError:
+        clear_entry()
+        entry.insert(tk.END, "Error")
+
+def euler_number():
+    entry.insert(tk.END, str(exp(1)))
 
 def factorial_func():
     try:
