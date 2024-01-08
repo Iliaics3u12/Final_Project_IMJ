@@ -124,7 +124,6 @@ def cube_root():
         clear_entry()
         entry.insert(tk.END, "Error")
 
-
 def logarithm_base_10():
     try:
         value = float(entry.get())
@@ -225,12 +224,12 @@ button_params = {
 }
 
 buttons = [
-    ('7', '8', '9', '/','x³'),
-    ('4', '5', '6', '*', '³√'),
-    ('1', '2', '3', '-', 'log10'),
-    ('0', '.', 'pi', '+', 'e'),
-    ('x^2', 'x^y', 'sqrt','='),
-    ('factorial', 'quadratic','cubic'),
+    ('7', '8', '9', '/','factorial'),
+    ('4', '5', '6', '*', 'quadratic'),
+    ('1', '2', '3', '-', 'cubic'),
+    ('0', '.', 'pi', '+'),
+    ('x²','x³', 'x^y', '='),
+    ('√', '³√', 'log10','e'),
     ('cos', 'sin', 'tan', ),
     ('acos', 'asin', 'atan', )
 ]
@@ -239,11 +238,11 @@ for i, row in enumerate(buttons, start=1):
     for j, button_label in enumerate(row):
         if button_label == 'pi':
             action = lambda pi=pi: insert_text(str(pi))
-        elif button_label == 'x^2':
+        elif button_label == 'x²':
             action = square
         elif button_label == 'x^y':
             action = power
-        elif button_label == 'sqrt':
+        elif button_label == '√':
             action = square_root
         elif button_label == '=':
             action = calculate
